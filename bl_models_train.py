@@ -336,9 +336,9 @@ class BLPayoutModelsFit:
 
 
 if __name__ == "__main__":
-    input_path = '/Users/yurygubman/Data/BL/data/'
+    input_path = '/your_path/data/'
     input_file = 'bl_full_data.csv'
-    output_predictors_path = '/Users/yurygubman/Results/BL/predictors/'
+    output_predictors_path = '/your_path/predictors/'
     os.makedirs(input_path, exist_ok=True)
     os.makedirs(output_predictors_path, exist_ok=True)
     model = BLPayoutModelsFit(input_path, input_file, output_predictors_path, train_test=True)
