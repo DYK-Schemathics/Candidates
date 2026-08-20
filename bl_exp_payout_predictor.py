@@ -245,9 +245,9 @@ class BLPayoutModelsPredict:
 
 
 if __name__ == "__main__":
-    predictors_path = '/Users/yurygubman/Results/BL/predictors/'
-    user_data_path = '/Users/yurygubman/Data/BL/data/'
+    predictors_path = '/your_path/predictors/'
+    user_data_path = '/your_path/data/'
     user_data_file = 'user_data_lead.csv'
-    log_path = '/Users/yurygubman/Results/BL/logs/'
+    log_path = '/your_path/logs/'
     os.makedirs(log_path, exist_ok=True)
     result_clients_ranks = BLPayoutModelsPredict(predictors_path, user_data_path, log_path, user_data_file).predict_()
