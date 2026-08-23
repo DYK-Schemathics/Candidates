@@ -13,10 +13,10 @@ from tabpfn_client import TabPFNRegressor, set_access_token
 
 class BLPayoutModelsPredict:
 
-    def __init__(self, predictors_path, user_data_path, log_path, user_data_file):
+    def __init__(self, predictors_path, user_data, log_path):
         self.predictors_path = predictors_path
-        self.user_data_path = user_data_path
-        self.user_data_file = user_data_file
+        self.user_data = user_data
+        self.user_data_file = user_data
         self.logger = self.setup_bl_logger(log_dir=log_path)
         self.capture_warnings()
 
@@ -55,7 +55,7 @@ class BLPayoutModelsPredict:
         return model_tfm, tfm_context['columns'], CB_bl_lead
 
     def import_preprocess(self):
-        bl_data = pd.read_csv(self.user_data_path + self.user_data_file, low_memory=False)
+        bl_data = pd.DataFrame([user_data])
         all_clients = pd.read_csv(self.predictors_path + 'all_clients.csv')
         needed_columns = ['session_dt', 'conversion_dt', 'register_date',
                           'campaign_id', 'page', 'auto_city', 'auto_country', 'auto_state', 'device_type', 'sub1',
@@ -245,9 +245,31 @@ class BLPayoutModelsPredict:
 
 
 if __name__ == "__main__":
-    predictors_path = '/your_path/predictors/'
-    user_data_path = '/your_path/data/'
-    user_data_file = 'user_data_lead.csv'
-    log_path = '/your_path/logs/'
+    predictors_path = '/Users/yurygubman/Results/BL/predictors/'
+    user_data = {
+        "session_dt": "2026-01-06 19:24:22",
+        "conversion_dt": "2026-01-06 19:26:10",
+        "register_date": "2026-01-06 19:26:07",
+        "campaign_id": 120227360861540306,
+        "page": "top10us.com/app/business-loans-v2",
+        "auto_city": "Fort Lauderdale",
+        "auto_country": "United States",
+        "auto_state": "Florida",
+        "device_type": "mobile",
+        "sub1": 1121993,
+        "sub2": "01121993 Ad set",
+        "sub3": 1513124082,
+        "business_type": "C Corporation",
+        "credit_score": "Very Poor - Under 550",
+        "industry": "construction",
+        "loan_amount": "$25,000 - $49,999",
+        "loan_reason": "Equipment purchase",
+        "monthly_revenue": "$20,000 - $49,999",
+        "time_in_business": "2+ years",
+        "fname": "Rigoberto",
+        "lname": "Rodriguez",
+        "cellphone": 7869914030,
+    }
+    log_path = '/Users/yurygubman/Results/BL/logs/'
     os.makedirs(log_path, exist_ok=True)
-    result_clients_ranks = BLPayoutModelsPredict(predictors_path, user_data_path, log_path, user_data_file).predict_()
+    result_clients_ranks = BLPayoutModelsPredict(predictors_path, user_data, log_path).predict_()
