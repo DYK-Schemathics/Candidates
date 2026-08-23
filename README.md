@@ -108,8 +108,8 @@ A dictionary keyed by brand:
   "xlt":                  {"rank": 3.0, "expected_payout": 19.44},
 }
 This ranking is what determines the on-screen order of brands for that user. The call sits on a synchronous, user-facing path — the user is waiting on the landing page.
+
 6. Task
-Part 1
 Productize the two attached scripts on Databricks with MLflow. The models are given (Git link above) - do not change functions and logic. 
 Data is given (Drive link above). Put it into the Databricks table to make it available to the code. Make all needed changes to make model read from the table and write artifacts, logs ans results to Databriks  
 Training pipeline. Support both existing modes: train/test mode and production (trains on all data, registers artifacts). Schedule the production run weekly, Sunday 05:00. Log technical parameters to MLflow so runs are comparable. Save researcher-defined log as an artifact for accuracy assessment. Version artifacts so a serving version can be identified and rolled back.
